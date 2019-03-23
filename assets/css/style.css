@@ -7,3 +7,8 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
 }
+
+.wrapper {
+    color: #ffffff;
+    text-align: center;
+}

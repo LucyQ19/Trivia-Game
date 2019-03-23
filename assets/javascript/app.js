@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function() {
    
     var trivia = [
         {
@@ -37,14 +37,6 @@ $(document).ready(function(){
         },
 
         {
-            question: "Which show on MTV featured celebrities giving tours of their homes?",
-            choice: ["Celebrity Homes 101", "Cribs", "Check Out My Place", "None of the Above"],
-            answer: 1,
-            photo: "assets/images/CribsLogo"
-        },
-
-
-        {
             question: "What show played the top ten most requested videos of the day for ten years running?",
             choice: ["Rock Docs", "Top 10 Countdown", "Final Countdown", "Total Request Live"],
             answer: 3,
@@ -56,19 +48,18 @@ $(document).ready(function(){
             choice: ["Some people just don't get it!", "Music out of this world!", "You'll never look at music the same way again!", "I want my MTV"],
             answer: 2,
             photo: "assets/images/MTVOriginalSlogan.gif"
-        }
-    ]
+        }];
 
-    var correctCount = 0;
-    var wrongCount = 0;
-    var unanswerCount = 0;
+    var correctAnswers = 0;
+    var wrongAnswers = 0;
+    var unanswered = 0;
 
     timer = 20;
     var intervalId;
 
     var userGuess = "";
     var running = false;
-
+ 
     var questionCount = trivia.length;
     var pick; 
     var index;
@@ -77,6 +68,105 @@ $(document).ready(function(){
 
     $("#reset").hide();
 
-    $( )
+    $("#start").on("click", function() {
+        $("#start").hide();
+        displayQuestion();
+        runTimer();
+        for(var i = 0; i < trivia.length; i++) {
+            holder.push(trivia[i]);
+        }
+    });
+
+    function runTimer() {
+        if(!running) {
+            intervalId = setInterval(decrement, 1000);
+            running = true;
+        }
+    }
+
+    function decrement() {
+        $("#timeLeft").html("<h3>Time Remaining: " + timer + "</h3>");
+        timer --;
+
+        if (timer === 0) {
+            unanswered++;
+            stop();
+            $("#answerBlock").html("<p>Time is up!  The correct answer is: " + pick.choice[pick.answer] + "</p>");
+            hidePicture();
+        }
+    }
+
+    function stop() {
+        running = false;
+        clearInterval(intervalId);
+    }
+
+    function displayQuestion() {
+        index = Math.floor(Math.random() * trivia.length);
+        pick = trivia[index];
+        console.log(trivia)
+
+        $("#questionBlock").html("<h2>" + pick.question + "</h2>");
+        for(var i = 0; i < pick.choice.length; i++) {
+            var userChoice = $("<div>");
+            userChoice.addClass("answerchoice");
+            userChoice.html(pick.choice[i]);
+            userChoice.attr("data-guessvalue", i);
+            $("#answerBlock").append(userChoice);
+        }
+    }
+
+    $(".answerchoice").on("click", function () {
+        userGuess = parseInt($(this).attr("data-guessvalue"));
+        
+        if (userGuess === pick.answer) {
+            stop();
+            correctAnswers++;
+            userGuess = "";
+            $("#answerBlock").html("<p>Correct!</p>");
+            hidePicture();
+        } else {
+            stop ();
+            wrongAnswers++;
+            userGuess="";
+            $("#answerBlock").html("<p>Wrong! The correct answer is: " + pick.choicep[pick.answer] + "</p>");
+            hidePicture();
+        }
+    });
+
+    function hidePicture() {
+        $("#answerBlock").append("<img src=" + pick.photo + ">");
+        newArray.push(pick);
+        trivia.splice(index, 1);
+
+        var hidpic = setTimeout (function() {
+            $("#answerBlock").empty();
+            timer = 20;
+
+            if ((wrongAnswers + correctAnswers + unanswered) === questionCount){
+                $("#questionBlock").empty();
+                $("#questionBlock").html("<h3> Game Over! Here's how you did: </h3>");
+                $("#answerBlock").append("<h4> Correct: " + correctAnswers + "</h4>");
+                $("#answerBlock").append("<h4> Incorrect: " + wrongAnswers + "</h4>");
+                $("#answerBlock").append("<h4> Unanswered: " + unanswered + "</h4>");
+                correctAnswers = 0;
+                wrongAnswers = 0;
+                unanswered = 0;
+            } else {
+                runTimer();
+                displayQuestion();
+            }
+        }, 3000);
+    }
+$("#reset").on("click", function() {
+    $("#reset").hide();
+    $("#answerBlock").empty();
+    $("#questionBlock").empty();
+    for(var i = 0; i < holder.length; i++) {
+        trivia.push(holder[i]);
+    }
+    runTimer();
+    displayQuestion();
+});
 
 });
