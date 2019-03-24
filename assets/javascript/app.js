@@ -147,7 +147,7 @@ $(document).ready(function() {
     var wrongAnswers = 0;
     var unanswered = 0;
 
-    timer = 20;
+    timer = 15;
     var intervalId;
 
     var userGuess = "";

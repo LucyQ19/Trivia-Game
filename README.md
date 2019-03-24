@@ -12,4 +12,4 @@
 Again button.
 
 ### Thank you for visiting my github!  Enjoy my game!
-Play my game here: https://lucyq19.github.io/Trivia-Game?
+Play my game here: https://lucyq19.github.io/Trivia-Game/
