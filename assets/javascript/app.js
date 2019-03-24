@@ -2,59 +2,152 @@ $(document).ready(function() {
    
     var trivia = [
         {
-            question: "What does MTV stand for?",
-            choice: ["Music Video Television", "Music Television", "Mult-Television Video", "Music Turned Video"],
-            answer: 1,
-            photo: "assets/images/MTVLogo.gif" 
-        },
-
-        {
-            question: "In what year did MTV first air?",
-            choice: ["1984", "1992", "1981", "1989"],
-            answer: 2,
-            photo: "assets/images/MTV1981.gif"
-        },
-
-        {
-            question: "What was the first music video to air on MTV?",
-            choice: ["REO Speedwagon - Take It on the Run", "Pat Benatar - Hit Me with Your Best Shot", "Rick Astley - Never Gonna Give You Up", "Buggles - Video Killed the Radio Star"],
+            question: "Which famed football star died?",
+            choice: ["Marcus Ballman", "Gary Ledman", "Billy Hellman", "Tommy Sherman"],
             answer: 3,
-            photo: "assets/images/Buggles.gif"
+            photo: "assets/images/TommySherman.png" 
         },
 
         {
-            question: "Which television show on MTV launched the modern reality TV genre in 1992?",
-            choice: ["The Real World", "Road Rules", "Jersey Shore", "Laguna Beach: The Real Orange County"],
+            question: "'Sick, Sad World' had an image of what in its logo?",
+            choice: ["A Sad Face", "A Skull", "An Eyeball", "A bottle of Alcohol"],
+            answer: 2,
+            photo: "assets/images/SickSadWorld.gif"
+        },
+
+        {
+            question: "What was Tom's last name?",
+            choice: ["Yeager", "Thompson", "Sloane", "Zunker"],
+            answer: 2,
+            photo: "assets/images/TomSloane.gif"
+        },
+
+        {
+            question: "'You're standing on my ___________.'",
+            choice: ["Head", "Foot", "Back", "Neck"],
+            answer: 3,
+            photo: "assets/images/DariaTV.gif"
+        },
+
+        {
+            question: "What column did Brittany run in the school newspaper?",
+            choice: ["Lunch Review", "Cheerleading", "Fashion", "Advice"],
+            answer: 3,
+            photo: "assets/images/BrittanyAdvice.gif"
+        },
+
+        {
+            question: "Daria won the 'Spend a Day with _______' contest.",
+            choice: ["Val", "Jane", "Kim", "Sue"],
             answer: 0,
-            photo: "assets/images/TheRealWorld.gif"
+            photo: "assets/images/ValContest.png"
         },
 
         {
-            question: "Who called the world 'bullsh*t' in her 1997 VMA speech?",
-            choice: ["Madonna", "Courtney Love", "Fiona Apple", "Alanis Morissette"],
+            question: "What was the name of Trent's band?",
+            choice: ["Uranium", "Road Worriers", "Mystik Spiral", "Something-Something Explosion"],
             answer: 2,
-            photo: "assets/images/VMAFionaApple.gif"
+            photo: "assets/images/TrentMystikSpiral.gif"
         },
 
         {
-            question: "What show played the top ten most requested videos of the day for ten years running?",
-            choice: ["Rock Docs", "Top 10 Countdown", "Final Countdown", "Total Request Live"],
+            question: "What was the name of the pizza shop?",
+            choice: ["Pizza Prince", "The Slice", "Grease Corner", "Pepperoni Hank's"],
+            answer: 0,
+            photo: "assets/images/PizzaPrince.gif"
+        },
+
+        {
+            question: "What was Quinn's role in the Fashion club?",
+            choice: ["President", "Vice President", "Secretary", "Treasurer"],
+            answer: 1,
+            photo: "assets/images/QuinnVicePresident.gif"
+        },
+
+        {
+            question: "Jodie was president of what club?",
+            choice: ["Spanish", "French", "Latin", "Italian"],
+            answer: 1,
+            photo: "assets/images/JodiePresident.jpeg"
+        },
+
+        {
+            question: "Mr. O'Neill taught an after school course on what?",
+            choice: ["Happiness", "Confidence", "Self-Esteem", "Responsibility"],
+            answer: 2,
+            photo: "assets/images/ONeillSelfEsteem.gif"
+        },
+
+        {
+            question: "Who was the football team captain?",
+            choice: ["Kevin", "Mack", "Jamie", "Robert"],
+            answer: 1,
+            photo: "assets/images/CaptainMack.gif"
+        },
+
+        {
+            question: "What was Principal Li's first name?",
+            choice: ["Alexa", "Anna", "Amy", "Angela"],
             answer: 3,
-            photo: "assets/images/TRL.gif"
+            photo: "assets/images/AngelaLi.jpg"
         },
 
         {
-            question: "What was MTVs original slogan?",
-            choice: ["Some people just don't get it!", "Music out of this world!", "You'll never look at music the same way again!", "I want my MTV"],
+            question: "What was the name of Sandi's cat?",
+            choice: ["Misty", "Chanel", "Revlon", "Fluffy"],
+            answer: 3,
+            photo: "assets/images/SandiCat.gif"
+        },
+
+        {
+            question: "Which teacher could not deal with the incompetency of his/her students?",
+            choice: ["Ms. Barch", "Mr. DeMartino", "Mr. O'Neill", "Ms. Bennett"],
+            answer: 1,
+            photo: "assets/images/DeMartino.gif"
+        },
+
+        {
+            question: "What kind of law did Helen practice?",
+            choice: ["Corporate", "Criminal", "Bankruptcy", "Environmental"],
+            answer: 0,
+            photo: "assets/images/HelenCorporateJob.jpeg"
+        },
+
+        {
+            question: "How many siblings did Jane have?",
+            choice: ["4", "3", "2", "1"],
+            answer: 0,
+            photo: "assets/images/JaneSiblings.gif"
+        },
+
+        {
+            question: "Who wasn't one of the three J's?",
+            choice: ["Jamie", "Johnny", "Joey", "Jeffy"],
+            answer: 1,
+            photo: "assets/images/JeffyJamieJoey.jpg"
+        },
+
+        {
+            question: "What was the Lawndale High School mascot?",
+            choice: ["Leopard", "Lion", "Knight", "Cougar"],
+            answer: 1,
+            photo: "assets/images/LawndaleLions.png"
+        },
+
+        {
+            question: "What was the nickname of Jake's emotionally abusive father?",
+            choice: ["Big Jake", "The Sergeant", "Mad Dog", "Master J"],
             answer: 2,
-            photo: "assets/images/MTVOriginalSlogan.gif"
-        }];
+            photo: "assets/images/JakeDad.gif"
+        }
+    
+    ];
 
     var correctAnswers = 0;
     var wrongAnswers = 0;
     var unanswered = 0;
 
-    timer = 20;
+    timer = 15;
     var intervalId;
 
     var userGuess = "";
@@ -91,7 +184,7 @@ $(document).ready(function() {
         if (timer === 0) {
             unanswered++;
             stop();
-            $("#answerBlock").html("<p>Time is up!  The correct answer is: " + pick.choice[pick.answer] + "</p>");
+            $("#answerBlock").html("<p>Time is up!  The correct answer is " + pick.choice[pick.answer] + "</p>");
             hidePicture();
         }
     }
@@ -129,7 +222,7 @@ $(document).ready(function() {
             stop ();
             wrongAnswers++;
             userGuess="";
-            $("#answerBlock").html("<p>Wrong! The correct answer is: " + pick.choicep[pick.answer] + "</p>");
+            $("#answerBlock").html("<p>Wrong! The correct answer is " + pick.choicep[pick.answer] + "</p>");
             hidePicture();
         }
     });
@@ -145,7 +238,7 @@ $(document).ready(function() {
 
             if ((wrongAnswers + correctAnswers + unanswered) === questionCount){
                 $("#questionBlock").empty();
-                $("#questionBlock").html("<h3> Game Over! Here's how you did: </h3>");
+                $("#questionBlock").html("<h3> Game Over! Here is how you did: </h3>");
                 $("#answerBlock").append("<h4> Correct: " + correctAnswers + "</h4>");
                 $("#answerBlock").append("<h4> Incorrect: " + wrongAnswers + "</h4>");
                 $("#answerBlock").append("<h4> Unanswered: " + unanswered + "</h4>");
@@ -156,7 +249,7 @@ $(document).ready(function() {
                 runTimer();
                 displayQuestion();
             }
-        }, 3000);
+        }, 5000);
     }
 $("#reset").on("click", function() {
     $("#reset").hide();

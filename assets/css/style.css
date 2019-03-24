@@ -2,13 +2,15 @@ html,
 body {
     height: 100%;
 }
-body {
-    background-image: url('..//images/MTVMoonMan.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
+
+@font-face {
+    
 }
 
-.wrapper {
-    color: #ffffff;
-    text-align: center;
+body {
+    background-image: url('..//images/DariaBackground.jpg');
+}
+
+#triviaPlay {
+
 }
