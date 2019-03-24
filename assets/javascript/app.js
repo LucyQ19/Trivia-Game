@@ -10,7 +10,7 @@ $(document).ready(function() {
 
         {
             question: "'Sick, Sad World' had an image of what in its logo?",
-            choice: ["A Sad Face", "A Skull", "An Eyeball", "A bottle of Alcohol"],
+            choice: ["A Sad Face", "A Skull", "An Eyeball", "A Bottle of Alcohol"],
             answer: 2,
             photo: "assets/images/SickSadWorld.gif"
         },
@@ -47,7 +47,7 @@ $(document).ready(function() {
             question: "What was the name of Trent's band?",
             choice: ["Uranium", "Road Worriers", "Mystik Spiral", "Something-Something Explosion"],
             answer: 2,
-            photo: "assets/images/TrentMystikSpiral.gif"
+            photo: "assets/images/TrentBand.gif"
         },
 
         {
@@ -61,7 +61,7 @@ $(document).ready(function() {
             question: "What was Quinn's role in the Fashion club?",
             choice: ["President", "Vice President", "Secretary", "Treasurer"],
             answer: 1,
-            photo: "assets/images/QuinnVicePresident.gif"
+            photo: "assets/images/QuinnVP.gif"
         },
 
         {
@@ -82,7 +82,7 @@ $(document).ready(function() {
             question: "Who was the football team captain?",
             choice: ["Kevin", "Mack", "Jamie", "Robert"],
             answer: 1,
-            photo: "assets/images/CaptainMack.gif"
+            photo: "assets/images/CaptMackDaddy.gif"
         },
 
         {
@@ -138,7 +138,7 @@ $(document).ready(function() {
             question: "What was the nickname of Jake's emotionally abusive father?",
             choice: ["Big Jake", "The Sergeant", "Mad Dog", "Master J"],
             answer: 2,
-            photo: "assets/images/JakeDad.gif"
+            photo: "assets/images/DariaDadJake.gif"
         }
     
     ];
@@ -147,7 +147,7 @@ $(document).ready(function() {
     var wrongAnswers = 0;
     var unanswered = 0;
 
-    timer = 15;
+    timer = 20;
     var intervalId;
 
     var userGuess = "";
@@ -178,13 +178,13 @@ $(document).ready(function() {
     }
 
     function decrement() {
-        $("#timeLeft").html("<h3>Time Remaining: " + timer + "</h3>");
+        $("#timeLeft").html("<h5>Time Remaining: " + timer + "</h5>");
         timer --;
 
         if (timer === 0) {
             unanswered++;
             stop();
-            $("#answerBlock").html("<p>Time is up!  The correct answer is " + pick.choice[pick.answer] + "</p>");
+            $("#answerBlock").html("<p>Time is up!  The correct answer is " + pick.choice[pick.answer] + ".</p>");
             hidePicture();
         }
     }
@@ -199,7 +199,7 @@ $(document).ready(function() {
         pick = trivia[index];
         console.log(trivia)
 
-        $("#questionBlock").html("<h2>" + pick.question + "</h2>");
+        $("#questionBlock").html("<h3>" + pick.question + "</h3>");
         for(var i = 0; i < pick.choice.length; i++) {
             var userChoice = $("<div>");
             userChoice.addClass("answerchoice");
