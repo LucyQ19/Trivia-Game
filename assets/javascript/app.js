@@ -147,7 +147,7 @@ $(document).ready(function() {
     var wrongAnswers = 0;
     var unanswered = 0;
 
-    timer = 15;
+    var timer = 15;
     var intervalId;
 
     var userGuess = "";
@@ -163,8 +163,8 @@ $(document).ready(function() {
 
     $("#start").on("click", function() {
         $("#start").hide();
-        displayQuestion();
         runTimer();
+        displayQuestion();
         for(var i = 0; i < trivia.length; i++) {
             holder.push(trivia[i]);
         }
@@ -175,29 +175,28 @@ $(document).ready(function() {
             intervalId = setInterval(decrement, 1000);
             running = true;
         }
-    }
+    };
 
     function decrement() {
         $("#timeLeft").html("<h5>Time Remaining: " + timer + "</h5>");
-        timer --;
+        timer--;
 
         if (timer === 0) {
             unanswered++;
             stop();
-            $("#answerBlock").html("<p>Time is up!  The correct answer is " + pick.choice[pick.answer] + ".</p>");
+            $("#answerBlock").html("<p>Time is up!  The correct answer is: " + pick.choice[pick.answer] + ".</p>");
             hidePicture();
         }
-    }
+    };
 
     function stop() {
         running = false;
         clearInterval(intervalId);
-    }
+    };
 
     function displayQuestion() {
         index = Math.floor(Math.random() * trivia.length);
         pick = trivia[index];
-        console.log(trivia)
 
         $("#questionBlock").html("<h3>" + pick.question + "</h3>");
         for(var i = 0; i < pick.choice.length; i++) {
@@ -207,22 +206,23 @@ $(document).ready(function() {
             userChoice.attr("data-guessvalue", i);
             $("#answerBlock").append(userChoice);
         }
-    }
+    };
 
     $(".answerchoice").on("click", function () {
-        userGuess = parseInt($(this).attr("data-guessvalue"));
+        userGuess = $(this).attr("data-guessvalue");
         
         if (userGuess === pick.answer) {
             stop();
             correctAnswers++;
             userGuess = "";
-            $("#answerBlock").html("<p>Correct!</p>");
+            $("#answerBlock").html("<p> Correct! </p>");
             hidePicture();
+
         } else {
             stop ();
             wrongAnswers++;
             userGuess="";
-            $("#answerBlock").html("<p>Wrong! The correct answer is " + pick.choicep[pick.answer] + "</p>");
+            $("#answerBlock").html("<p>Wrong! The correct answer is: " + pick.choicep[pick.answer] + "</p>");
             hidePicture();
         }
     });
@@ -234,7 +234,7 @@ $(document).ready(function() {
 
         var hidpic = setTimeout (function() {
             $("#answerBlock").empty();
-            timer = 20;
+            timer = 15;
 
             if ((wrongAnswers + correctAnswers + unanswered) === questionCount){
                 $("#questionBlock").empty();
