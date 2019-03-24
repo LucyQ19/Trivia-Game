@@ -147,7 +147,7 @@ $(document).ready(function() {
     var wrongAnswers = 0;
     var unanswered = 0;
 
-    var timer = 15;
+    var timer = 20;
     var intervalId;
 
     var userGuess = "";
@@ -234,7 +234,7 @@ $(document).ready(function() {
 
         var hidpic = setTimeout (function() {
             $("#answerBlock").empty();
-            timer = 15;
+            timer = 20;
 
             if ((wrongAnswers + correctAnswers + unanswered) === questionCount){
                 $("#questionBlock").empty();
