@@ -1,4 +1,6 @@
 $(document).ready(function() {
+
+    //Here are my trivia questions with choices, and answers with images.
    
     var trivia = [
         {
@@ -143,32 +145,46 @@ $(document).ready(function() {
     
     ];
 
+    //Here are the variables for the scoresheet for the last page displayed.
+
     var correctAnswers = 0;
     var wrongAnswers = 0;
     var unanswered = 0;
 
+    //Here are the variables for the timer.  
+
     var timer = 20;
     var intervalId;
+    var running = false;
+
+    //Here are the variables for the game.
 
     var userGuess = "";
-    var running = false;
- 
     var questionCount = trivia.length;
     var pick; 
     var index;
     var newArray = [];
     var holder = [];
 
+    //This hides the Play Again button.
+
     $("#reset").hide();
+
+    //When the player clicks the start button, it activates the game.  Questions will appear.
 
     $("#start").on("click", function() {
         $("#start").hide();
         runTimer();
         displayQuestion();
+
+        //This gives the player a random question.
+
         for(var i = 0; i < trivia.length; i++) {
             holder.push(trivia[i]);
         }
     });
+
+    //This starts the timer.
 
     function runTimer() {
         if(!running) {
@@ -176,6 +192,8 @@ $(document).ready(function() {
             running = true;
         }
     };
+
+    //This starts the timer countdown and displays the timer on the html.
 
     function decrement() {
         $("#timeLeft").html("<h5>Time Remaining: " + timer + "</h5>");
@@ -189,27 +207,39 @@ $(document).ready(function() {
         }
     };
 
+    //This stops resets the timer for the next question.
+
     function stop() {
         running = false;
         clearInterval(intervalId);
     };
 
+    //This displays the question with choices on the html.
+
     function displayQuestion() {
         index = Math.floor(Math.random() * trivia.length);
         pick = trivia[index];
+
+        //This loops through and display possible answers.
 
         $("#questionBlock").html("<h3>" + pick.question + "</h3>");
         for(var i = 0; i < pick.choice.length; i++) {
             var userChoice = $("<div>");
             userChoice.addClass("answerchoice");
             userChoice.html(pick.choice[i]);
+
+            
+
             userChoice.attr("data-guessvalue", i);
             $("#answerBlock").append(userChoice);
         }
     };
 
+    //This is the click function that allows the player to selects the her/her answers and its possible outcomes.
+    //This doesn't work.
+
     $(".answerchoice").on("click", function () {
-        userGuess = $(this).attr("data-guessvalue");
+        userGuess = parseInt($(this).attr("data-guessvalue"));
         
         if (userGuess === pick.answer) {
             stop();
@@ -222,10 +252,12 @@ $(document).ready(function() {
             stop ();
             wrongAnswers++;
             userGuess="";
-            $("#answerBlock").html("<p>Wrong! The correct answer is: " + pick.choicep[pick.answer] + "</p>");
+            $("#answerBlock").html("<p>Wrong! The correct answer is: " + pick.choice[pick.answer] + "</p>");
             hidePicture();
         }
     });
+
+    //This hides the pictures after 3 seconds so a new question can appear.
 
     function hidePicture() {
         $("#answerBlock").append("<img src=" + pick.photo + ">");
@@ -236,30 +268,38 @@ $(document).ready(function() {
             $("#answerBlock").empty();
             timer = 20;
 
+            //This runs the score sheet when all the questions have been answered.
+
             if ((wrongAnswers + correctAnswers + unanswered) === questionCount){
                 $("#questionBlock").empty();
                 $("#questionBlock").html("<h3> Game Over! Here is how you did: </h3>");
                 $("#answerBlock").append("<h4> Correct: " + correctAnswers + "</h4>");
                 $("#answerBlock").append("<h4> Incorrect: " + wrongAnswers + "</h4>");
                 $("#answerBlock").append("<h4> Unanswered: " + unanswered + "</h4>");
+                $("#reset").show();
                 correctAnswers = 0;
                 wrongAnswers = 0;
                 unanswered = 0;
+
             } else {
                 runTimer();
                 displayQuestion();
             }
-        }, 5000);
+             
+        }, 3000);
     }
-$("#reset").on("click", function() {
-    $("#reset").hide();
-    $("#answerBlock").empty();
-    $("#questionBlock").empty();
-    for(var i = 0; i < holder.length; i++) {
-        trivia.push(holder[i]);
-    }
-    runTimer();
-    displayQuestion();
-});
+
+    //This resets the game so the player can playe again.
+
+    $("#reset").on("click", function() {
+        $("#reset").hide();
+        $("#answerBlock").empty();
+        $("#questionBlock").empty();
+        for(var i = 0; i < holder.length; i++) {
+            trivia.push(holder[i]);
+        }
+        runTimer();
+        displayQuestion();
+    });
 
 });
