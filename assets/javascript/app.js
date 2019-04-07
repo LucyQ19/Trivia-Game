@@ -1,6 +1,4 @@
 $(document).ready(function() {
-
-    //Here are my trivia questions with choices, and answers with images.
    
     var trivia = [
         {
@@ -102,7 +100,7 @@ $(document).ready(function() {
         },
 
         {
-            question: "Which teacher could not deal with the incompetency of his/her students?",
+            question: "Which teacher could not deal with his/her students?",
             choice: ["Ms. Barch", "Mr. DeMartino", "Mr. O'Neill", "Ms. Bennett"],
             answer: 1,
             photo: "assets/images/DeMartino.gif"
@@ -137,7 +135,7 @@ $(document).ready(function() {
         },
 
         {
-            question: "What was the nickname of Jake's emotionally abusive father?",
+            question: "What was the nickname of Jake's emotionally abusive dad?",
             choice: ["Big Jake", "The Sergeant", "Mad Dog", "Master J"],
             answer: 2,
             photo: "assets/images/DariaDadJake.gif"
@@ -145,19 +143,13 @@ $(document).ready(function() {
     
     ];
 
-    //Here are the variables for the scoresheet for the last page displayed.
-
     var correctAnswers = 0;
     var wrongAnswers = 0;
-    var unanswered = 0;
+    var unanswered = 0; 
 
-    //Here are the variables for the timer.  
-
-    var timer = 20;
+    var timer = 15;
     var intervalId;
     var running = false;
-
-    //Here are the variables for the game.
 
     var userGuess = "";
     var questionCount = trivia.length;
@@ -166,25 +158,18 @@ $(document).ready(function() {
     var newArray = [];
     var holder = [];
 
-    //This hides the Play Again button.
 
     $("#reset").hide();
-
-    //When the player clicks the start button, it activates the game.  Questions will appear.
 
     $("#start").on("click", function() {
         $("#start").hide();
         runTimer();
         displayQuestion();
 
-        //This gives the player a random question.
-
         for(var i = 0; i < trivia.length; i++) {
             holder.push(trivia[i]);
         }
     });
-
-    //This starts the timer.
 
     function runTimer() {
         if(!running) {
@@ -193,8 +178,6 @@ $(document).ready(function() {
         }
     };
 
-    //This starts the timer countdown and displays the timer on the html.
-
     function decrement() {
         $("#timeLeft").html("<h5>Time Remaining: " + timer + "</h5>");
         timer--;
@@ -202,25 +185,20 @@ $(document).ready(function() {
         if (timer === 0) {
             unanswered++;
             stop();
-            $("#answerBlock").html("<p>Time is up!  The correct answer is: " + pick.choice[pick.answer] + ".</p>");
+            $("#answerBlock").html("<h5>Time is up!  The correct answer is: " + pick.choice[pick.answer] + ".</h5>");
             hidePicture();
         }
     };
-
-    //This stops resets the timer for the next question.
 
     function stop() {
         running = false;
         clearInterval(intervalId);
     };
 
-    //This displays the question with choices on the html.
 
     function displayQuestion() {
         index = Math.floor(Math.random() * trivia.length);
         pick = trivia[index];
-
-        //This loops through and display possible answers.
 
         $("#questionBlock").html("<h3>" + pick.question + "</h3>");
         for(var i = 0; i < pick.choice.length; i++) {
@@ -228,47 +206,42 @@ $(document).ready(function() {
             userChoice.addClass("answerchoice");
             userChoice.html(pick.choice[i]);
 
-            
-
             userChoice.attr("data-guessvalue", i);
             $("#answerBlock").append(userChoice);
         }
     };
 
-    //This is the click function that allows the player to selects the her/her answers and its possible outcomes.
-    //This doesn't work.
+    $('body').on('click', '.answerchoice', function() {
 
-    $(".answerchoice").on("click", function () {
-        userGuess = parseInt($(this).attr("data-guessvalue"));
+            userGuess = parseInt($(this).attr("data-guessvalue"));
         
-        if (userGuess === pick.answer) {
-            stop();
-            correctAnswers++;
-            userGuess = "";
-            $("#answerBlock").html("<p> Correct! </p>");
-            hidePicture();
+            if (userGuess === pick.answer) {
+                stop();
+                correctAnswers++;
+                userGuess = "";
+                $("#answerBlock").html("<h5> Correct! You are too smart and too sensitive for a world like ours.</h5>");
+                hidePicture();
 
-        } else {
-            stop ();
-            wrongAnswers++;
-            userGuess="";
-            $("#answerBlock").html("<p>Wrong! The correct answer is: " + pick.choice[pick.answer] + "</p>");
-            hidePicture();
+            } else {
+                stop ();
+                wrongAnswers++;
+                userGuess="";
+                $("#answerBlock").html("<h5>Wrong! The correct answer is: " + pick.choice[pick.answer] + ".</h5>");
+                hidePicture();
         }
+ 
     });
 
-    //This hides the pictures after 3 seconds so a new question can appear.
 
     function hidePicture() {
         $("#answerBlock").append("<img src=" + pick.photo + ">");
         newArray.push(pick);
         trivia.splice(index, 1);
 
-        var hidpic = setTimeout (function() {
+        var hidPic = setTimeout (function() {
             $("#answerBlock").empty();
-            timer = 20;
+            timer = 15;
 
-            //This runs the score sheet when all the questions have been answered.
 
             if ((wrongAnswers + correctAnswers + unanswered) === questionCount){
                 $("#questionBlock").empty();
@@ -288,8 +261,6 @@ $(document).ready(function() {
              
         }, 3000);
     }
-
-    //This resets the game so the player can playe again.
 
     $("#reset").on("click", function() {
         $("#reset").hide();
