@@ -6,6 +6,8 @@ body {
 
 body {
     background-image: url('..//images/DariaBackground.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
     display: flex;
     flex-direction: column;
 }
