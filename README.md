@@ -10,10 +10,10 @@ This app is a timed trivia game over the 90's TV show <em>Daria</em>.  The game 
 
 * When the player selects the correct answer, the game congratulates him/her for choosing the right answer.  After a few seconds, the game goes to the next question without any input from the player.
 * When the player runs out of time, the game tells the player that time is up and shows the correct answer.  After a few seconds, the game goes to the next question without any input from the player.
-* When the player chooses the wrong answer, the game tells the player that s/he has selected the wrong answer, and then displays the correct answer.  After a few seconds, the game goes the next question without any input from the player.
+* When the player chooses the wrong answer, the game tells the player that s/he has selected the wrong answer, and then displays the correct answer.  After a few seconds, the game goes to the next question without any input from the player.
 * At the end, the game reveals the player's final scorecard: the number of questions answer correctly, incorrectly, or not at all.
 * Finally, the player has the option to play again by clicking the the Play
-Again button.
+Again! button.
 
 ### Technologies Used for this App:
 
